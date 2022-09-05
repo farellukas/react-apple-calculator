@@ -1,8 +1,11 @@
 import React from 'react'
+import './Display.css'
 
-function Display() {
+function Display(props) {
   return (
-    <div>Display</div>
+    <div className="display-wrapper">
+      <h1 className="display">{props.value}</h1>
+    </div>
   )
 }
 

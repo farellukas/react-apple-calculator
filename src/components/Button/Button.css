@@ -1,0 +1,12 @@
+.calc-btn {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  color: white;
+  font-size: 32px;
+  border: none;
+  border-radius: 50%;
+  height: 72px;
+  width: 72px;
+  background-color: #3e434b;
+  margin: 4px;
+}

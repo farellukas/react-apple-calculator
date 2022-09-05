@@ -1,0 +1,14 @@
+.display-wrapper {
+  box-sizing: border-box;
+  padding: 8px;
+  width: 320px;
+  margin: auto;
+}
+
+.display {
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  text-align: right;
+  font-size: 80px;
+  margin: 0;
+}

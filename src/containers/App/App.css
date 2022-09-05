@@ -1,0 +1,12 @@
+.btn-group {
+  margin: auto;
+}
+
+.btn-wrapper {
+  margin: auto;
+}
+
+.calc-wrapper {
+  display: flex;
+  flex-direction: column;
+}
