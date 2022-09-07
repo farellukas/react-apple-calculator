@@ -53,11 +53,9 @@ function App() {
       setProduct(history[0])
       setHistory([])
     }
-
-    console.log(history)
   }, [history])
 
-  function handleClick(input) {
+  function handleBtnClick(input) {
     if ('1234567890'.includes(input)) {  // numbers
       if (product === "0" || operatorIsSelected) {
         setProduct(input)
@@ -68,6 +66,7 @@ function App() {
     } else if (input === "AC") {  // all clear
       setProduct("0")
       setHistory([])
+      setOperatorIsSelected(false)
     } else if (input === "C") { // clear
       setProduct("0")
     } else if (input === "+/-") {  // change sign
@@ -82,15 +81,25 @@ function App() {
     }
   }
 
+  function handleDisplayClick(input) {
+    if (input.length === 1 || input === "-0") {
+      setProduct("0")
+    } else if (input.length === 2 && input[0] === "-") {
+      setProduct("-0")
+    } else if (input !== "0") {
+      setProduct(prevProduct => prevProduct.slice(0, -1))
+    }
+  }
+
   return (
     <div className="calc-wrapper">
-      <Display value={product} />
+      <Display value={product} onClick={handleDisplayClick} />
       <div className="btn-wrapper">     
         {buttons.map((row, rowIndex) => {
           return (
             <div className="btn-group" key={rowIndex}>
               {row.map((button, buttonIndex) => {
-                return (<Button id={'btn-' + button} key={buttonIndex} value={button} onClick={handleClick} />)
+                return (<Button id={'btn-' + button} key={buttonIndex} value={button} onClick={handleBtnClick} />)
               })}
             </div>
           )
