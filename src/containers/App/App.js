@@ -14,7 +14,7 @@ function App() {
                                   ['0', '.', '=']
                                 ])
 
-  useEffect(() => {
+  useEffect(() => {  // AC and C switching
     if (product === "0") {
       setButtons(prevButtons => ([
         ['AC', ...prevButtons[0].slice(1)],
@@ -28,16 +28,40 @@ function App() {
     }
   }, [product]);
 
+  useEffect(() => {
+    if (history.length >= 3) {
+      switch (history[1]) {
+        case '+':
+          setHistory(prevHistory => [(Number(history[0]) + Number(history[2])).toString(), ...prevHistory.slice(3)])
+          break;
+        case '-':
+          setHistory(prevHistory => [(Number(history[0]) - Number(history[2])).toString(), ...prevHistory.slice(3)])
+          break;
+        case '*':
+          setHistory(prevHistory => [(Number(history[0]) * Number(history[2])).toString(), ...prevHistory.slice(3)])
+          break;
+        case '/':
+          setHistory(prevHistory => [(Number(history[0]) / Number(history[2])).toString(), ...prevHistory.slice(3)])
+          break;
+        default:
+          break;
+      }
+    } 
+
+    if (history.length === 2 && history[history.length-1] === "=") {
+      setProduct(history[0])
+      setHistory([])
+    }
+
+    console.log(history)
+  }, [history])
+
   function handleClick(input) {
     if ('1234567890'.includes(input)) {  // numbers
-      console.log(product)
-      if (product === "0") {
-        setProduct(input)
-      } else {
-        setProduct(prevProduct => prevProduct + input)
-      }
+      product === "0" ? setProduct(input) : setProduct(prevProduct => prevProduct + input)
     } else if (input === "AC") {  // all clear
       setProduct("0")
+      setHistory([])
     } else if (input === "C") { // clear
       setProduct("0")
     } else if (input === "+/-") {  // change sign
@@ -46,6 +70,9 @@ function App() {
       !product.includes('.') ? setProduct(prevProduct => prevProduct + '.') : setProduct(product)
     } else if (input === '%') {  // percent
       product !== "0" ? setProduct(prevProduct => Number(prevProduct/100).toString()) : setProduct(product)
+    } else {  // operators
+      setHistory(prevHistory => [...prevHistory, product, input])
+      setProduct("0")
     }
   }
 
