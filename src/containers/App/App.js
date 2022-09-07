@@ -105,7 +105,12 @@ function App() {
                     key={buttonIndex} 
                     value={button} 
                     onClick={handleBtnClick} 
-                    className={buttonIndex === row.length-1 ? `btn-operators ${history[history.length-1] === button && operatorIsSelected ? "btn-operatorselected" : ""}` : rowIndex === 0 ? "btn-misc" : ""} />
+                    className={buttonIndex === row.length-1 
+                      ? `btn-operators ${history[history.length-1] === button && operatorIsSelected 
+                        ? "btn-operatorselected" 
+                          : ""}` 
+                        : rowIndex === 0 ? "btn-misc" 
+                      : ""} />
                 )
               })}
             </div>
