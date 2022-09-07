@@ -14,20 +14,27 @@ function App() {
                                   ['0', '.', '=']
                                 ])
 
+  useEffect(() => {
+    if (product === "0") {
+      setButtons(prevButtons => ([
+        ['AC', ...prevButtons[0].slice(1)],
+        ...prevButtons.slice(1)
+      ]))
+    } else {
+      setButtons(prevButtons => ([
+        ['C', ...prevButtons[0].slice(1)],
+        ...prevButtons.slice(1)
+      ]))
+    }
+  }, [product]);
+
   function handleClick(input) {
     if ('1234567890'.includes(input)) {  // numbers
+      console.log(product)
       if (product === "0") {
         setProduct(input)
-        setButtons(prevButtons => ([
-          ['AC', ...prevButtons[0].slice(1)],
-          ...prevButtons.slice(1)
-        ]))
       } else {
         setProduct(prevProduct => prevProduct + input)
-        setButtons(prevButtons => ([
-          ['C', ...prevButtons[0].slice(1)],
-          ...prevButtons.slice(1)
-        ]))
       }
     } else if (input === "AC") {  // all clear
       setProduct("0")
