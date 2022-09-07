@@ -99,7 +99,14 @@ function App() {
           return (
             <div className="btn-group" key={rowIndex}>
               {row.map((button, buttonIndex) => {
-                return (<Button id={'btn-' + button} key={buttonIndex} value={button} onClick={handleBtnClick} className={buttonIndex === row.length-1 ? `btn-operators ${history[history.length-1] === button && operatorIsSelected ? "btn-selected" : ""}` : rowIndex === 0 ? "btn-misc" : ""} />)
+                return (
+                  <Button 
+                    id={'btn-' + button} 
+                    key={buttonIndex} 
+                    value={button} 
+                    onClick={handleBtnClick} 
+                    className={buttonIndex === row.length-1 ? `btn-operators ${history[history.length-1] === button && operatorIsSelected ? "btn-operatorselected" : ""}` : rowIndex === 0 ? "btn-misc" : ""} />
+                )
               })}
             </div>
           )

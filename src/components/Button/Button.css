@@ -25,7 +25,7 @@
   border-radius: 36px;
 }
 
-.btn-selected {
-  color: #000;
+.btn-operatorselected {
+  color: #f39c12;
   background-color: #fff;
 }
