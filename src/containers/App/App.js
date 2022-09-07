@@ -13,6 +13,7 @@ function App() {
                                   ['1', '2', '3', '+'],
                                   ['0', '.', '=']
                                 ])
+  const [operatorIsSelected, setOperatorIsSelected] = useState(false)
 
   useEffect(() => {  // AC and C switching
     if (product === "0") {
@@ -58,7 +59,12 @@ function App() {
 
   function handleClick(input) {
     if ('1234567890'.includes(input)) {  // numbers
-      product === "0" ? setProduct(input) : setProduct(prevProduct => prevProduct + input)
+      if (product === "0" || operatorIsSelected) {
+        setProduct(input)
+        setOperatorIsSelected(false)
+      } else {
+        setProduct(prevProduct => prevProduct + input)
+      }
     } else if (input === "AC") {  // all clear
       setProduct("0")
       setHistory([])
@@ -72,7 +78,7 @@ function App() {
       product !== "0" ? setProduct(prevProduct => Number(prevProduct/100).toString()) : setProduct(product)
     } else {  // operators
       setHistory(prevHistory => [...prevHistory, product, input])
-      setProduct("0")
+      setOperatorIsSelected(true)
     }
   }
 
