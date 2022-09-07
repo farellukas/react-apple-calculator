@@ -76,7 +76,7 @@ function App() {
     } else if (input === '%') {  // percent
       product !== "0" ? setProduct(prevProduct => Number(prevProduct/100).toString()) : setProduct(product)
     } else {  // operators
-      setHistory(prevHistory => [...prevHistory, product, input])
+      history.length && operatorIsSelected ? setHistory(prevHistory => [...prevHistory.slice(0, prevHistory.length-1), input]) : setHistory(prevHistory => [...prevHistory, product, input])
       setOperatorIsSelected(true)
     }
   }
@@ -99,7 +99,7 @@ function App() {
           return (
             <div className="btn-group" key={rowIndex}>
               {row.map((button, buttonIndex) => {
-                return (<Button id={'btn-' + button} key={buttonIndex} value={button} onClick={handleBtnClick} />)
+                return (<Button id={'btn-' + button} key={buttonIndex} value={button} onClick={handleBtnClick} className={buttonIndex === row.length-1 ? `btn-operators ${history[history.length-1] === button && operatorIsSelected ? "btn-selected" : ""}` : rowIndex === 0 ? "btn-misc" : ""} />)
               })}
             </div>
           )

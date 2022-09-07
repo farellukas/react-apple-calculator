@@ -10,3 +10,22 @@
   background-color: #3e434b;
   margin: 4px;
 }
+
+.btn-operators {
+  background-color: #f39c12
+}
+
+.btn-misc {
+  background-color: #7f8c8d;
+  color: #000;
+}
+
+#btn-0 {
+  width: 152px;
+  border-radius: 36px;
+}
+
+.btn-selected {
+  color: #000;
+  background-color: #fff;
+}
