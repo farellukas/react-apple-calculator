@@ -49,9 +49,9 @@ function App() {
       }
     } 
 
-    if (history.length === 2 && history[history.length-1] === "=") {
+    if (history.length === 2) {
       setProduct(history[0])
-      setHistory([])
+      if (history[history.length-1] === "=") {setHistory([])}
     }
   }, [history])
 
